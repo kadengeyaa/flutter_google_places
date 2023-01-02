@@ -24,6 +24,7 @@ class PlacesAutocompleteWidget extends StatefulWidget {
   final String? region;
   final Mode mode;
   final Widget? logo;
+  final Widget? leading;
   final ValueChanged<PlacesAutocompleteResponse>? onError;
   final int debounce;
   final InputDecoration? decoration;
@@ -63,6 +64,7 @@ class PlacesAutocompleteWidget extends StatefulWidget {
     this.strictbounds,
     this.region,
     this.logo,
+    this.leading,
     this.onError,
     Key? key,
     this.proxyBaseUrl,
@@ -92,6 +94,7 @@ class _PlacesAutocompleteOverlayState extends PlacesAutocompleteState {
         data: theme,
         child: Scaffold(
           appBar: AppBar(
+            leading: widget.leading,
             title: AppBarPlacesAutoCompleteTextField(
               textDecoration: widget.decoration,
               textStyle: widget.textStyle,
@@ -124,7 +127,7 @@ class _PlacesAutocompleteOverlayState extends PlacesAutocompleteState {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                IconButton(
+                widget.leading ?? IconButton(
                   color: theme.brightness == Brightness.light
                       ? Colors.black45
                       : null,
